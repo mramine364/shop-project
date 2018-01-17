@@ -1,10 +1,10 @@
 
-## Shop app
+# Shop app
 
-# Technologies i used
+## Technologies i used
 
-PHP
-Backend : Laravel
-Frontend : VueJS
-Database : MySQL
+PHP <br>
+Backend : Laravel <br>
+Frontend : VueJS <br>
+Database : MySQL <br>
 
