@@ -1,0 +1,16 @@
+
+
+.box{
+    /* width: 160px; */
+    margin-top: 25px
+}
+
+.box-footer{
+    text-align: center;
+}
+
+.box-footer a{
+    margin-top: 12px;
+    margin-right: 3px;
+    margin-left: 3px;
+}

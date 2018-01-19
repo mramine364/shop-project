@@ -28,8 +28,8 @@
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">            
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Nearby Shops</a>
+                <li class="nav-item @yield('nearby')">
+                  <a class="nav-link" href="{{ route('main') }}">Nearby Shops</a>
                 </li>                
                 <li class="nav-item">
                   <a class="nav-link" href="#">My preferred Shops</a>
@@ -71,7 +71,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>    
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>

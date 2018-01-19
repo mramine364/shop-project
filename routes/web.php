@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/{page?}', 'HomeController@index')->name('main');
+
+Route::get('/like/{id}', 'HomeController@like')->name('like');
+Route::get('/dislike/{id}', 'HomeController@dislike')->name('dislike');

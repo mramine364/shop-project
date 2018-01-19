@@ -51,10 +51,20 @@
 
                         <div class="form-row">
                             <div class="form-group col">
-                              <input type="text" class="form-control" name="latitude" placeholder="Latitude">
+                              <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude">
+                              @if ($errors->has('latitude'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('latitude') }}</strong>
+                                    </span>
+                              @endif
                             </div>
                             <div class="form-group col">
-                              <input type="text" class="form-control" name="longitude" placeholder="Longitude">
+                              <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude">
+                              @if ($errors->has('longitude'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('longitude') }}</strong>
+                              </span>
+                              @endif
                             </div>
                             <div class="form-group col-md-3">
                                 <button class="btn btn-light" id="get-location">
@@ -74,4 +84,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/register.js') }}"></script>
 @endsection
