@@ -4,7 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
 
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -31,8 +32,8 @@
                 <li class="nav-item @yield('nearby')">
                   <a class="nav-link" href="{{ route('main') }}">Nearby Shops</a>
                 </li>                
-                <li class="nav-item">
-                  <a class="nav-link" href="#">My preferred Shops</a>
+                <li class="nav-item @yield('prefs')">
+                  <a class="nav-link" href="{{ route('prefs') }}">My preferred Shops</a>
                 </li>
                 @if(Auth::check())
                 <li class="nav-item">

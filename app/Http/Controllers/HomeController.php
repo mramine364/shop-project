@@ -32,11 +32,11 @@ class HomeController extends Controller
 
         $shops_per_page = 12;
 
-        $query = "SELECT s.id as id, name, picture, `like` \n"
+        $query = "SELECT s.id as id, name, picture \n"
             ."FROM shops s \n"
             ."LEFT JOIN shop_users su \n"
             ."ON s.id = su.shop_id \n"
-            ."WHERE `like` IS NULL OR `like`!=1 and `like`!=-1 \n"
+            ."WHERE `like` IS NULL \n"
             ."OR `like`=-1 AND CURRENT_TIMESTAMP()>=date+INTERVAL 2 HOUR \n"
             ."ORDER BY (latitude-$lat)*(latitude-$lat) + (longitude-$lon)*(longitude-$lon) \n"
             ."LIMIT ".($shops_per_page)." OFFSET ".($shops_per_page*($page-1));
@@ -81,5 +81,27 @@ class HomeController extends Controller
         $shop_user->save();
 
         return redirect()->route('main');
+    }
+
+
+    /**
+     * Show the preferred shops.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function prefs(){
+
+        $query = "SELECT s.id as id, name, picture \n"
+            ."FROM shop_users su \n"
+            ."INNER JOIN shops s \n"
+            ."ON s.id = su.shop_id \n"
+            ."WHERE `like`=1";
+
+        $shops = DB::select(DB::raw($query));
+
+        return view('prefs', [
+            'shops' => $shops,
+            'count' => count($shops)
+            ]);
     }
 }

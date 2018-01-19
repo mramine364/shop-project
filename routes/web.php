@@ -13,7 +13,8 @@
 
 Auth::routes();
 
-Route::get('/{page?}', 'HomeController@index')->name('main');
+Route::get('/{page?}', 'HomeController@index')->name('main')->where('page', '[0-9]+');
+Route::get('/preferred', 'HomeController@prefs')->name('prefs');
 
 Route::get('/like/{id}', 'HomeController@like')->name('like');
 Route::get('/dislike/{id}', 'HomeController@dislike')->name('dislike');
