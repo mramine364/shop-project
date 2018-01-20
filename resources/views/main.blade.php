@@ -23,7 +23,9 @@ active
                         <img class="card-img" src="{{ $shops[$i]->picture }}" alt="Shop image">
                         <div class="box-footer">
                             <a class="btn btn-success btn-sm" href="{{ route('like', ['id'=> $shops[$i]->id]) }}" role="button">Like</a>
+                            @if ($shops[$i]->like<>-1)
                             <a class="btn btn-danger btn-sm" href="{{ route('dislike', ['id'=> $shops[$i]->id]) }}" role="button">Dislike</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -91,9 +93,7 @@ active
             </ul>
         </nav>
 
-@endsection 
-
-
+@endsection
 
 
 

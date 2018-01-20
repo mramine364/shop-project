@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         $shops_per_page = 12;
 
-        $query = "SELECT s.id as id, name, picture \n"
+        $query = "SELECT s.id as id, name, picture, `like`\n"
             ."FROM shops s \n"
             ."LEFT JOIN shop_users su \n"
             ."ON s.id = su.shop_id \n"

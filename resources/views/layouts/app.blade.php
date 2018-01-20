@@ -43,8 +43,7 @@
                 </li>
                 <li class="nav-item">
                     {{--  logout requires POST as HTTP request method  --}}
-                    <a class="nav-link" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                    <a class="nav-link" href="{{ route('logout') }}" @click.prevent="Logout">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>
                     </a>
                     <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -73,6 +72,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>    
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('js')
 </body>
 
