@@ -1,7 +1,7 @@
 
 
-new Vue({
-    el: '#app',
+let app = new Vue({
+    el: '#nav',
 
     methods:{
         Logout(){            

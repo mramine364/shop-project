@@ -40,60 +40,50 @@ active
         @endfor
     </div>
 
-        {{--  Pagiination  --}}
-        <nav style="margin: 20px;">
-            <ul class="pagination justify-content-center">
-                <li class="page-item @if ($page==1) disabled @endif">
-                    <a class="page-link" href="@if ($page>1) {{ route('main', ['page' => $page-1]) }} @else # @endif" tabindex="-1">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    </a>
-                </li>
-                
-                @if ($page==1)
-                    @for ($i = $page; $i <= $page+2; $i++)
-                    <li class="page-item @if ($page==$i) active @endif">                
-                        <a class="page-link" href="{{ route('main', ['page' => $i]) }}">{{ $i }}</a>
-                    </li>
-                    @endfor
-                    <li class="page-item disabled">                
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                @elseif($page==$pages)
-                    <li class="page-item disabled">                
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    @for ($i = $page-2; $i <= $page; $i++)
-                    <li class="page-item @if ($page==$i) active @endif">                
-                        <a class="page-link" href="{{ route('main', ['page' => $i]) }}">{{ $i }}</a>
-                    </li>
-                    @endfor
-                @else
-                    @if ($page-1>1)
-                    <li class="page-item disabled">                
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    @endif                    
-                    @for ($i = $page-1; $i <= $page+1; $i++)
-                    <li class="page-item @if ($page==$i) active @endif">                
-                        <a class="page-link" href="{{ route('main', ['page' => $i]) }}">{{ $i }}</a>
-                    </li>
-                    @endfor
-                    @if ($page+1<$pages)
-                    <li class="page-item disabled">                
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    @endif
-                @endif                
-                 
-                <li class="page-item @if ($page==$pages) disabled @endif">
-                    <a class="page-link" href="@if ($page<$pages) {{ route('main', ['page' => $page+1]) }} @else # @endif">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    {{--  Pagination  --}}
+    <nav style="margin: 20px;" id="pages">
+            <paginate
+            :page-count="{{ $pages }}"
+            :page-range="2"
+            :initial-page="{{ $page-1 }}"
+            :click-handler="selectPage"
+            :container-class="'pagination justify-content-center'"
+            :page-class="'page-item'"
+            :page-link-class="'page-link'"
+            :prev-text="'Prev'"
+            :prev-class="'page-item'"
+            :prev-link-class="'page-link'"
+            :next-text="'Next'"
+            :next-class="'page-item'"
+            :next-link-class="'page-link'">
+            </paginate>
+    </nav>
 
 @endsection
 
+@section('js_lib')
+    <script src="{{ asset('js/vuejs-paginate.js') }}"></script>
+@endsection
 
+@section('js')
+    {{--  <script src="js/main.js"></script>  --}}
+    <script>
+
+        Vue.component('paginate', VuejsPaginate)
+
+        let pages = new Vue({
+            el: '#pages',
+            data: {
+                pageUrl: "{{ route('main') }}/"
+            },
+            methods:{        
+                selectPage(pageNum) {
+                    {{--  console.log('pageNum='+pageNum)
+                    console.log(this.pageUrl+pageNum)  --}}
+                    window.location = this.pageUrl+pageNum;
+                }
+            }
+        })
+    </script>
+@endsection
 

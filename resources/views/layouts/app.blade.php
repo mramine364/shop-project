@@ -16,12 +16,19 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     @yield('stylesheet')
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>    
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    @yield('js_lib')
+    
 </head>
 
 <body>
 	<div id="app" class="container-fluid">		
 
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
             <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -69,12 +76,9 @@
 		@yield('content')
 	</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>    
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/vue.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--  <script src="{{ asset('js/app.js') }}"></script>  --}}
     @yield('js')
+    
 </body>
 
 </html>
