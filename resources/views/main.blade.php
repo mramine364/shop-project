@@ -78,8 +78,6 @@ active
             },
             methods:{        
                 selectPage(pageNum) {
-                    {{--  console.log('pageNum='+pageNum)
-                    console.log(this.pageUrl+pageNum)  --}}
                     window.location = this.pageUrl+pageNum;
                 }
             }
