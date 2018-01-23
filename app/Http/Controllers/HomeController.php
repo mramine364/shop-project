@@ -17,6 +17,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        /**
+         * Authentication will be required to view preferred or nearby shops,
+         * as well as to liking or disliking shops
+         */
         $this->middleware('auth');
     }
 
@@ -27,11 +31,20 @@ class HomeController extends Controller
      */
     public function index($page = 1)
     {
+        /**
+         * User location
+         */
         $lat = Auth::user()->latitude;
         $lon = Auth::user()->longitude;
 
+        /**
+         * Number of shops displayed per page
+         */
         $shops_per_page = 12;
 
+        /**
+         * Selecting nearby shops
+         */
         $query = "SELECT s.id as id, name, picture, `like`\n"
             ."FROM shops s \n"
             ."LEFT JOIN shop_users su \n"
@@ -43,7 +56,17 @@ class HomeController extends Controller
 
         $shops = DB::select(DB::raw($query));
 
-        $shop_count = DB::select(DB::raw("SELECT count(*) as shop_count FROM shops"))[0]->shop_count;
+        /**
+         * Counting the total number of displayed shops for pagination
+         */
+        $cquery = "SELECT count(*) as shop_count \n"
+            ."FROM shops s \n"
+            ."LEFT JOIN shop_users su \n"
+            ."ON s.id = su.shop_id \n"
+            ."WHERE `like` IS NULL \n"
+            ."OR `like`=-1 AND CURRENT_TIMESTAMP()>=date+INTERVAL 2 HOUR";
+
+        $shop_count = DB::select(DB::raw($cquery))[0]->shop_count;
 
         $pages = ceil((float)$shop_count/$shops_per_page);
 
@@ -55,6 +78,9 @@ class HomeController extends Controller
             ]);
     }
 
+    /**
+     * Liking a shop
+     */
     public function like($id)
     {
         $user_id = Auth::user()->id;
@@ -69,6 +95,9 @@ class HomeController extends Controller
         return redirect()->route('main');
     }
 
+    /**
+     * Disliking a shop
+     */
     public function dislike($id)
     {
         $user_id = Auth::user()->id;
@@ -91,7 +120,10 @@ class HomeController extends Controller
      */
     public function prefs(){
 
-        $query = "SELECT s.id as id, name, picture \n"
+        /**
+         * Selecting preferred shops
+         */
+        $query = "SELECT s.id as id, name, picture, `like` \n"
             ."FROM shop_users su \n"
             ."INNER JOIN shops s \n"
             ."ON s.id = su.shop_id \n"

@@ -30,9 +30,13 @@ As a User, I can dislike a shop, so it won’t be displayed within “Nearby Sho
 <li>
 As a User, I can display the list of preferred shops
 <li>
-As a User, I can remove a shop from my preferred shops list
+As a User, I can remove a shop from my preferred shops list (by disliking it)
 </ul>
 
-## Note
-
+## Notes
+<ul>
+<li>
 I used bootstrap to create the grid system for Displaying shops, that's why the design is responsive.
+<li>
+Users must be authenticated to view preferred or nearby shops
+</ul>
