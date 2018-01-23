@@ -1,6 +1,10 @@
 
 @extends('layouts.app')
 
+@section('title')
+Nearby shops
+@endsection
+
 @section('stylesheet')
 <link href="{{ asset('css/box.css') }}" rel="stylesheet">
 @endsection

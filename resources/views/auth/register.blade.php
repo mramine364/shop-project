@@ -1,47 +1,54 @@
 @extends('layouts.app')
 
+@section('title')
+Sign up
+@endsection
+
+@section('register')
+active
+@endsection 
+
 @section('content')
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="display: block;margin: auto;">
                 <h4 style="text-align: center;margin: 30px 5px 18px 5px;">Register</h4>
                 <div>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group">
                             <label for="name">Name</label>
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                             @if ($errors->has('name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('name') }}
+                                </div>
                             @endif
                             
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group">
                             <label for="email">E-Mail Address</label>                            
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </div>
                             @endif                            
-                        </div>
+                        </div>                       
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group">
                             <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            @if ($errors->has('password'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('password') }}
+                                </div>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -51,19 +58,19 @@
 
                         <div class="form-row">
                             <div class="form-group col">
-                              <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude">
+                              <input type="text" class="form-control{{ $errors->has('latitude') ? ' is-invalid' : '' }}" id="latitude" name="latitude" placeholder="Latitude">
                               @if ($errors->has('latitude'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('latitude') }}</strong>
-                                    </span>
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('latitude') }}
+                                </div>
                               @endif
                             </div>
                             <div class="form-group col">
-                              <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude">
+                              <input type="text" class="form-control{{ $errors->has('longitude') ? ' is-invalid' : '' }}" id="longitude" name="longitude" placeholder="Longitude">
                               @if ($errors->has('longitude'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('longitude') }}</strong>
-                              </span>
+                              <div class="invalid-feedback">
+                                  {{ $errors->first('longitude') }}
+                              </div>
                               @endif
                             </div>
                             <div class="form-group col-md-3">

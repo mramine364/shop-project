@@ -10,7 +10,7 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ config('app.name', 'Laravel') }}</title>
+	<title>@yield('title', config('app.name', 'Laravel'))</title>
 
 	<!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -59,12 +59,12 @@
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">
+                    <a class="nav-link @yield('login')" href="{{ route('login') }}">
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">
+                    <a class="nav-link @yield('register')" href="{{ route('register') }}">
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                 </li>
