@@ -11,6 +11,7 @@ Database : MySQL <br>
 ## Libraries i used
 
 Bootstrap 4 <br>
+Jquery (required by bootstrap) <br>
 Vuejs-paginate <br>
 
 ## Tasks accomplished
